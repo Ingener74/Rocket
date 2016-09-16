@@ -11,7 +11,7 @@ function MainScene:onCreate()
     self._mainController = MainController:create()
     self:addChild(self._mainController:layer())
 
-    self._mainController:rocketController() -- :runRocket()
+    self._mainController:rocketController()
 end
 
 return MainScene
