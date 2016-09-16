@@ -1,17 +1,17 @@
 
+local MainController = require "app.controllers.MainController"
+
 local MainScene = class("MainScene", cc.load("mvc").ViewBase)
-
 function MainScene:onCreate()
-    -- add background image
-    display.newSprite("HelloWorld.png")
-        :move(display.center)
-        :addTo(self)
+    dump(cc.Application:getInstance():getTargetPlatform())
+    dump(cc.Application:getInstance():getCurrentLanguage())
+    dump(cc.Application:getInstance():getCurrentLanguageCode())
+    dump(cc.Application:getInstance():getVersion())
 
-    -- add HelloWorld label
-    cc.Label:createWithSystemFont("Hello World", "Arial", 40)
-        :move(display.cx, display.cy + 200)
-        :addTo(self)
+    self._mainController = MainController:create()
+    self:addChild(self._mainController:layer())
 
+    self._mainController:rocketController() -- :runRocket()
 end
 
 return MainScene
