@@ -345,7 +345,7 @@ static CGSize _calculateStringSize(NSAttributedString *str, id font, CGSize *con
 
     CGSize dim;
     dim = [str boundingRectWithSize:CGSizeMake(textRect.width, textRect.height)
-                                 options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                 options:(NSStringDrawingOptions)(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                             context:nil].size;
 
     dim.width = ceilf(dim.width);
