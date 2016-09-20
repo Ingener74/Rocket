@@ -29,6 +29,20 @@ function MainLayer:ctor(delegate)
         end)
     end)
 
+    self._buttonAdmin = ccui.Button:create("button.png", "buttonHighlighted.png", "buttonHighlighted.png")
+    self._buttonAdmin:setContentSize(180, 160)
+    self._buttonAdmin:setTitleText("ADMIN")
+    self._buttonAdmin:setTitleFontSize(24)
+    self._buttonAdmin:setScale9Enabled(true)
+    self._buttonAdmin:setCapInsets({10, 20, 10, 20})
+    self:addChild(self._buttonAdmin)
+    self._buttonAdmin:setPosition(display.width - self._buttonAdmin:getContentSize().width/2 - 8, self._buttonAdmin:getContentSize().height/2 + 8)
+    self._buttonAdmin:addClickEventListener(function(sender)
+        clickAnimation(self._buttonAdmin, function()
+            self._delegate:adminController():layer():toogleAdmin()
+        end)
+    end)
+
     self._buttonStart = ccui.Button:create("animationbuttonnormal.png", "animationbuttonpressed.png")
     self._buttonStart:setPosition(display.width/2, 50)
     self._buttonStart:setTitleText("Start")
@@ -46,13 +60,7 @@ function MainLayer:ctor(delegate)
 
     local function onKeyReleased(keyCode, event)
         if keyCode == cc.KeyCode.KEY_TAB then
-            if self._delegate:adminController():layer():isShowed() then
-                self._delegate:adminController():layer():hideAdmin(function()
-                end)
-            else
-                self._delegate:adminController():layer():showAdmin(function()
-                end)
-            end
+            self._delegate:adminController():layer():toogleAdmin()
         else
             printInfo(keyCode)
         end
