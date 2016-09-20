@@ -126,4 +126,12 @@ function AdminLayer:hideAdmin(callback)
 	end
 end
 
+function AdminLayer:toogleAdmin()
+    if self:isShowed() then
+        self:hideAdmin()
+    else
+        self:showAdmin()
+    end
+end
+
 return AdminLayer
