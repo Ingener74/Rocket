@@ -8,13 +8,15 @@ function MainScene:onCreate()
     dump(cc.Application:getInstance():getCurrentLanguageCode())
     dump(cc.Application:getInstance():getVersion())
 
-    cc.SpriteFrameCache:getInstance():addSpriteFrames("expl.plist")
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("atlas0.plist")
 
     self._mainController = MainController:create()
     self:addChild(self._mainController:layer())
 
     self._mainController:rocketController()
-
+    
+    self:addChild(self._mainController:hudController():layer())
+    
     self:addChild(self._mainController:adminController():layer())
 end
 

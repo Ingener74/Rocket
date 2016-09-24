@@ -1,5 +1,6 @@
 
 local AdminController = require "app.controllers.AdminController"
+local HeadUpDisplayController = require "app.controllers.HeadUpDisplayController"
 local RocketController = require "app.controllers.RocketController"
 
 local MainLayer = require "app.views.MainLayer"
@@ -26,6 +27,13 @@ function MainController:adminController()
 		self._adminController = AdminController:create(self)
 	end
 	return self._adminController
+end
+
+function MainController:hudController()
+	if not self._hudController then
+		self._hudController = HeadUpDisplayController:create(self)
+	end
+	return self._hudController
 end
 
 return MainController

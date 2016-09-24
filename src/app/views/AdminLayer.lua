@@ -66,7 +66,7 @@ function AdminLayer:addButton(title, callback)
 	local posX = math.floor(#self._buttons % 3)
 	local posY = math.floor(#self._buttons / 3)
 
-    local button = ccui.Button:create("button.png", "buttonHighlighted.png", "buttonHighlighted.png")
+    local button = ccui.Button:create("button_normal.png", "button_pressed.png", "button_pressed.png", ccui.TextureResType.plistType)
     button:setAnchorPoint(.5, .5)
     button:setPosition(
     	(posX*8) + buttonWidth*posX + buttonWidth/2 + 8,

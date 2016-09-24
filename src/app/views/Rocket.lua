@@ -2,7 +2,7 @@
 local winSize = cc.Director:getInstance():getWinSize()
 
 local Rocket = class("Rocket", function()
-	return display.newSprite("rocket.png")
+	return cc.Sprite:createWithSpriteFrameName("rocket.png")
 end)
 
 function Rocket:ctor()

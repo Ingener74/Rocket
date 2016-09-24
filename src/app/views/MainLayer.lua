@@ -15,35 +15,7 @@ function MainLayer:ctor(delegate)
 
     self:setBackground()
 
-    self._buttonClose = ccui.Button:create("button.png", "buttonHighlighted.png", "buttonHighlighted.png")
-    self._buttonClose:setPosition(display.width - 36/2 - 8, display.height - 36/2 - 8)
-    self._buttonClose:setTitleText("X")
-    self._buttonClose:setTitleFontSize(24)
-    self._buttonClose:setScale9Enabled(true)
-    self._buttonClose:setCapInsets({10, 20, 10, 20})
-    self._buttonClose:setContentSize(36, 36)
-    self:addChild(self._buttonClose)
-    self._buttonClose:addClickEventListener(function(sender)
-        clickAnimation(self._buttonClose, function()
-            cc.Director:getInstance():endToLua()
-        end)
-    end)
-
-    self._buttonAdmin = ccui.Button:create("button.png", "buttonHighlighted.png", "buttonHighlighted.png")
-    self._buttonAdmin:setContentSize(180, 160)
-    self._buttonAdmin:setTitleText("ADMIN")
-    self._buttonAdmin:setTitleFontSize(24)
-    self._buttonAdmin:setScale9Enabled(true)
-    self._buttonAdmin:setCapInsets({10, 20, 10, 20})
-    self:addChild(self._buttonAdmin)
-    self._buttonAdmin:setPosition(display.width - self._buttonAdmin:getContentSize().width/2 - 8, self._buttonAdmin:getContentSize().height/2 + 8)
-    self._buttonAdmin:addClickEventListener(function(sender)
-        clickAnimation(self._buttonAdmin, function()
-            self._delegate:adminController():layer():toogleAdmin()
-        end)
-    end)
-
-    self._buttonStart = ccui.Button:create("animationbuttonnormal.png", "animationbuttonpressed.png")
+    self._buttonStart = ccui.Button:create("animationbuttonnormal.png", "animationbuttonpressed.png", "animationbuttonpressed.png", ccui.TextureResType.plistType)
     self._buttonStart:setPosition(display.width/2, 50)
     self._buttonStart:setTitleText("Start")
     self._buttonStart:setTitleFontSize(24)
@@ -80,7 +52,8 @@ function MainLayer:explode()
     self:addChild(self._explosion)
     self._explosion:setPosition(rocket:getPositionX(), rocket:getPositionY() - 40)
 
-    local frames = display.newFrames("explosion_1%04d.png", 1, 90)
+    local frames = display.newFrames("explosion/explosion_1%04d.png", 1, 90)
+
     local animation = display.newAnimation(frames, 3/90)
     self._explosion:playAnimationOnce(animation, {
         onComplete = function() 
@@ -101,7 +74,7 @@ function MainLayer:setBackground()
         self:addChild(self._bg)
     end
 
-    self._bgSprite = display.newSprite(string.format("bg%d.png", data.level))
+    self._bgSprite = cc.Sprite:createWithSpriteFrameName(string.format("bg%d.png", data.level))
     self._bg:addChild(self._bgSprite)
     self._bgSprite:setScale(math.max(
         display.width/self._bgSprite:getContentSize().width,
